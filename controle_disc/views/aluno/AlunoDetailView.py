@@ -13,11 +13,13 @@ class AlunoDetail(APIView):
     - Método PUT: Atualiza os detalhes de um aluno.
     - Método DELETE: Exclui um aluno e todas as tarefas associadas.
     """
+    # Define o serializador a ser usado para a classe Aluno
+    serializer_class = AlunoSerializer
     # GET: Retorna detalhes de um aluno específico
     def get(self, request, aluno_id):
         try:
             # Tenta obter o aluno pelo ID fornecido
-            aluno = Aluno.objects.get(pk=aluno_id)
+            aluno = Aluno.objects.get(id=aluno_id)
             # Serializa o aluno para formato JSON
             serializer = self.serializer_class(aluno)
             # Retorna a resposta com os detalhes do aluno
@@ -30,7 +32,7 @@ class AlunoDetail(APIView):
     def put(self, request, aluno_id):
         try:
             # Tenta obter o aluno pelo ID fornecido
-            aluno = Aluno.objects.get(pk=aluno_id)
+            aluno = Aluno.objects.get(id=aluno_id)
             # Serializa o aluno com os dados da requisição
             serializer = self.serializer_class(aluno, data=request.data)
             if serializer.is_valid():
@@ -48,11 +50,11 @@ class AlunoDetail(APIView):
     def delete(self, request, aluno_id):
         try:
             # Tenta obter o aluno pelo ID fornecido
-            aluno = Aluno.objects.get(pk=aluno_id)
+            aluno = Aluno.objects.get(id=aluno_id)
             # Exclui o aluno
             aluno.delete()
             # Retorna uma resposta sem conteúdo para indicar exclusão bem-sucedida
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response({"detail": "Aluno deletado com sucesso."}, status=status.HTTP_204_NO_CONTENT)
         except Aluno.DoesNotExist:
             # Retorna uma resposta de erro se o aluno não for encontrado
             return Response({"detail": "Aluno não encontrado."}, status=status.HTTP_404_NOT_FOUND)

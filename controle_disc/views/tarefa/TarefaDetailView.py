@@ -17,7 +17,7 @@ class TarefaDetailView(APIView):
     def get(self, request, tarefa_id):
         try:
             # Tenta obter a tarefa pelo ID fornecido
-            tarefa = Tarefa.objects.get(pk=tarefa_id)
+            tarefa = Tarefa.objects.get(id=tarefa_id)
             # Serializa a tarefa para formato JSON
             serializer = self.serializer_class(tarefa)
             # Retorna a resposta com os detalhes da tarefa
@@ -30,7 +30,7 @@ class TarefaDetailView(APIView):
     def put(self, request, tarefa_id):
         try:
             # Tenta obter a tarefa pelo ID fornecido
-            tarefa = Tarefa.objects.get(pk=tarefa_id)
+            tarefa = Tarefa.objects.get(id=tarefa_id)
             # Serializa a tarefa com os dados da requisição
             serializer = self.serializer_class(tarefa, data=request.data)
             if serializer.is_valid():
@@ -48,11 +48,11 @@ class TarefaDetailView(APIView):
     def delete(self, request, tarefa_id):
         try:
             # Tenta obter a tarefa pelo ID fornecido
-            tarefa = Tarefa.objects.get(pk=tarefa_id)
+            tarefa = Tarefa.objects.get(id=tarefa_id)
             # Exclui a tarefa
             tarefa.delete()
             # Retorna uma resposta sem conteúdo para indicar exclusão bem-sucedida
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response({"detail": "Tarefa deletada com sucesso."}, status=status.HTTP_204_NO_CONTENT)
         except Tarefa.DoesNotExist:
             # Retorna uma resposta de erro se a tarefa não for encontrada
             return Response({"detail": "Tarefa não encontrada."}, status=status.HTTP_404_NOT_FOUND)

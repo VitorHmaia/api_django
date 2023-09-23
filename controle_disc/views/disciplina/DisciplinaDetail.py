@@ -17,7 +17,7 @@ class DisciplinaDetailView(APIView):
     def get(self, request, disciplina_id):
         try:
             # Tenta obter a disciplina pelo ID fornecido
-            disciplina = Disciplina.objects.get(pk=disciplina_id)
+            disciplina = Disciplina.objects.get(id=disciplina_id)
             # Serializa a disciplina para formato JSON
             serializer = self.serializer_class(disciplina)
             # Retorna a resposta com os detalhes da disciplina
@@ -30,7 +30,7 @@ class DisciplinaDetailView(APIView):
     def put(self, request, disciplina_id):
         try:
             # Tenta obter a disciplina pelo ID fornecido
-            disciplina = Disciplina.objects.get(pk=disciplina_id)
+            disciplina = Disciplina.objects.get(id=disciplina_id)
             # Serializa a disciplina com os dados da requisição
             serializer = self.serializer_class(disciplina, data=request.data)
             if serializer.is_valid():
@@ -48,13 +48,13 @@ class DisciplinaDetailView(APIView):
     def delete(self, request, disciplina_id):
         try:
             # Tenta obter a disciplina pelo ID fornecido
-            disciplina = Disciplina.objects.get(pk=disciplina_id)
+            disciplina = Disciplina.objects.get(id=disciplina_id)
             # Desassocia todas as tarefas relacionadas à disciplina
             disciplina.tarefa_set.clear()
             # Exclui a disciplina
             disciplina.delete()
             # Retorna uma resposta sem conteúdo para indicar exclusão bem-sucedida
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response({"detail": "Disciplina deletada com sucesso."}, status=status.HTTP_204_NO_CONTENT)
         except Disciplina.DoesNotExist:
             # Retorna uma resposta de erro se a disciplina não for encontrada
             return Response({"detail": "Disciplina não encontrada."}, status=status.HTTP_404_NOT_FOUND)
