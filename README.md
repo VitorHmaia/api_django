@@ -1,77 +1,73 @@
-# API Django
-Este repositório é destinado a postagem da api em python desenvolvida conforme solicitado em sala de aula.
+# API de Gerenciamento de Alunos, Disciplinas e Tarefas
 
-# Guia de Configuração e Execução da Aplicação Django
+Esta é uma API RESTful em Django desenvolvida para auxiliar os alunos no gerenciamento de suas disciplinas e tarefas.
 
-Este guia fornecerá instruções passo a passo sobre como configurar e executar a aplicação Django. Certifique-se de seguir todas as etapas cuidadosamente para garantir que a aplicação funcione corretamente.
+## Tecnologias Utilizadas
 
-## Requisitos Prévios
+- **Django**: O framework web Python usado como base para a API.
+- **Django REST framework**: Uma extensão do Django que facilita a criação de APIs RESTful.
+- **Banco de Dados**: A API utiliza um banco de dados para armazenar informações de alunos, disciplinas e tarefas.
+- **RESTful**: A API segue os princípios do estilo arquitetural REST, o que significa que as operações são baseadas em URLs e métodos HTTP padrão.
 
-1. **Python**: A aplicação Django é baseada em Python. Certifique-se de ter o Python instalado. Você pode verificar a versão do Python instalada executando o comando `python --version` no terminal.
+## Funcionalidades Principais
 
-2. **Banco de Dados**: Verifique se você possui um banco de dados compatível instalado e configurado. O Django suporta vários bancos de dados, como PostgreSQL, MySQL, SQLite, entre outros.
+A API oferece as seguintes funcionalidades:
 
-3. **Virtualenv (Opcional)**: É recomendável criar um ambiente virtual para isolar as dependências da aplicação. Você pode instalar o `virtualenv` usando o seguinte comando: pip install virtualenv
+- **Alunos**: Criação, listagem, atualização e exclusão de alunos.
+- **Disciplinas**: Criação, listagem, atualização e exclusão de disciplinas.
+- **Tarefas**: Criação, listagem, atualização e exclusão de tarefas associadas a alunos e disciplinas.
+- **Relações**: Associação de tarefas a alunos e disciplinas.
 
-## Configuração Inicial
+## Uso da API
 
-Siga estas etapas para configurar a aplicação:
+Siga os passos abaixo para rodar a API localmente e importar as coleções no Postman para testar as funcionalidades.
 
-1. Clone o repositório para o seu ambiente local:
-git clone <URL do Repositório>
+**Passo 1: Configuração do Ambiente**
 
+1. Certifique-se de que você ativou seu ambiente virtual como explicado [aqui](#como-criar-e-ativar-o-ambiente-virtual).
 
-2. Navegue até o diretório da aplicação:
-cd <diretório-da-aplicação>
+**Passo 2: Instalação das Dependências**
 
+1. No terminal, navegue até o diretório raiz do seu projeto Django.
 
-3. Crie um ambiente virtual (opcional, mas recomendado):
-virtualenv venv .env
+2. Execute o seguinte comando para instalar as dependências:
 
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-4. Ative o ambiente virtual:
+**Passo 3: Rodar a Aplicação Localmente**
 
-- No Windows:
+1. Ainda no terminal, execute o seguinte comando para rodar a aplicação localmente:
 
-  ```
-  venv\Scripts\activate
-  ```
+    ```bash
+    python manage.py runserver
+    ```
 
-- No macOS e Linux:
+   Isso iniciará o servidor de desenvolvimento da aplicação.
 
-  ```
-  source venv/bin/activate
-  ```
+2. Acesse a API no seu navegador ou utilizando ferramentas como o [Postman](https://www.postman.com/).
 
-5. Instale as dependências da aplicação:
-pip install -r requirements.txt
+**Passo 4: Importar Coleções no Postman**
 
+1. Abra o Postman.
 
-## Configuração do Banco de Dados
+2. Clique em "Import" na barra de navegação esquerda.
 
-1. Configure as configurações do banco de dados no arquivo `settings.py` da aplicação. Certifique-se de definir as credenciais corretas e o tipo de banco de dados que você está usando.
+3. Selecione a opção "Link" e cole o link da coleção de testes (se disponível).
 
-2. Execute as migrações do banco de dados:
-python manage.py migrate
+4. Ou selecione a opção "Upload Files" e faça o upload do arquivo de coleção fornecido.
 
+**Passo 5: Testar a API no Postman**
 
-## Iniciar a Aplicação
+1. Na barra de navegação esquerda do Postman, você encontrará as coleções importadas.
 
-Agora que a aplicação está configurada, você pode iniciá-la:
+2. Clique na coleção relevante e selecione o pedido que deseja testar.
 
-1. Execute o servidor de desenvolvimento:
-python manage.py runserver
+3. Preencha os parâmetros necessários no pedido (por exemplo, corpo JSON) e clique em "Send" para fazer a solicitação à API.
 
+4. Analise a resposta da API para verificar se tudo está funcionando conforme o esperado.
 
-2. Acesse a aplicação em seu navegador da web:
-http://localhost:8000/
-
-3. Importe o arquivo 'API testes- CRUD.postman_collection' no Postman para testar as requisições e repostas.
-
-
-
-
-
-
+Certifique-se de ajustar os endpoints e os parâmetros de acordo com as necessidades do seu projeto.
 
 
